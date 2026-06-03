@@ -192,6 +192,7 @@
   },
   "active": "9be62cee883897e1",
   "lastOpenFiles": [
+    "Karpathy wiki 方法论.md",
     "README.md",
     "raw/2026-06-01 Using Goals in Codex.md",
     "raw/2026-06-03 A harness for every task dynamic workflows in Claude Code.md",
@@ -223,8 +224,6 @@
     "wiki/entities/people/affaan.md",
     "wiki/claims/Claude Code shorthand 证据与注意事项.md",
     "wiki/concepts/Codemaps for Agents.md",
-    "wiki/concepts/Agent Rules and Memory.md",
-    "wiki/concepts/Parallel Agent Workflows.md",
     "raw/assets/2026-06-01-claude-code-shorthand-11-custom-statusline.jpg",
     "raw/assets/2026-06-01-claude-code-shorthand-10-vscode-extension-docs.jpg",
     "raw/assets/2026-06-01-claude-code-shorthand-09-zed-command-palette.jpg",
