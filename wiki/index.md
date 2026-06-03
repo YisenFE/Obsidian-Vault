@@ -2,7 +2,7 @@
 type: index
 status: active
 created: 2026-05-28
-updated: 2026-05-29
+updated: 2026-06-03
 tags:
   - llm-wiki/index
 ---
@@ -33,6 +33,7 @@ tags:
 | [[wiki/sources/2026-05-28 The Anatomy of an Agent Harness|The Anatomy of an Agent Harness]] | ingested | LangChain：Agent = Model + Harness；filesystem/git、bash/code execution、sandbox/default tooling、context rot、Ralph Loop 与 model-harness co-evolution。 |
 | [[wiki/sources/2026-06-01 The Shorthand Guide to Everything Claude Code|The Shorthand Guide to Everything Claude Code]] | ingested | @affaan：Claude Code 日常 operating harness；skills/commands、hooks、subagents、rules/memory、MCP/plugin context budget、worktrees/tmux、editor integration。 |
 | [[wiki/sources/2026-06-01 Using Goals in Codex|Using Goals in Codex]] | ingested | OpenAI Cookbook：Codex Goals；thread-scoped completion contract、verification surface、continuation gates、budget accounting、research audit。 |
+| [[wiki/sources/2026-06-03 A harness for every task dynamic workflows in Claude Code|A harness for every task: dynamic workflows in Claude Code]] | ingested | Claude blog：Claude Code dynamic workflows；按任务生成 JavaScript 多智能体 harness，组合 fan-out、对抗验证、tournament、loop until done、模型路由和 worktree 隔离。 |
 
 ## 概念
 
@@ -49,6 +50,8 @@ tags:
 - [[wiki/concepts/Ralph Loop|Ralph Loop]] — 拦截退出并用 clean context 继续长任务的 harness pattern。
 - [[wiki/concepts/Model-Harness Co-evolution|Model-Harness Co-evolution]] — 模型与 harness primitive 在产品和训练循环中相互塑形。
 - [[wiki/concepts/Claude Code Operating Harness|Claude Code Operating Harness]] — Claude Code 个人操作支架：skills、hooks、subagents、rules、MCP/plugins、worktrees、tmux、editor、statusline。
+- [[wiki/concepts/Dynamic Workflows|Dynamic Workflows]] — Claude Code 动态工作流：由 Claude 按任务生成 JavaScript 多智能体 workflow，动态组合模型、worktree、验证和停止条件。
+- [[wiki/concepts/Long-running Agent Failure Modes|Long-running Agent Failure Modes]] — 长时程智能体失败模式：agentic laziness、自我偏好偏差、goal drift 及其 harness 防线。
 - [[wiki/concepts/Claude Code Hooks|Claude Code Hooks]] — Claude Code 工具调用/生命周期事件上的自动化反馈和 guardrails。
 - [[wiki/concepts/Subagent Scoping|Subagent Scoping]] — 用有限角色、工具、MCP 和权限约束子智能体。
 - [[wiki/concepts/MCP and Plugin Context Budget|MCP and Plugin Context Budget]] — 管理启用 MCP/plugins/tools 对上下文窗口和性能的消耗。
@@ -108,6 +111,7 @@ tags:
 - [[wiki/entities/people/Vivek Trivedy|Vivek Trivedy]] — LangChain Deep Agents harness engineering 文章作者。
 - [[wiki/entities/people/Michael Bolin|Michael Bolin]] — OpenAI Codex open-source tech lead；Codex harness 访谈嘉宾。
 - [[wiki/entities/people/affaan|@affaan]] — Claude Code shorthand 来源作者。
+- [[wiki/entities/people/Thariq Shihipar|Thariq Shihipar]] / [[wiki/entities/people/Sid Bidasaria|Sid Bidasaria]] — Claude Code dynamic workflows 文章作者。
 - [[wiki/entities/people/Ksenia|Ksenia]] — Turing Post / Inference 访谈者。
 - [[wiki/entities/people/Linyue Pan|Linyue Pan]] / [[wiki/entities/people/Lexiao Zou|Lexiao Zou]] / [[wiki/entities/people/Shuo Guo|Shuo Guo]] / [[wiki/entities/people/Jingchen Ni|Jingchen Ni]] / [[wiki/entities/people/Hai-Tao Zheng|Hai-Tao Zheng]] — NLAH 论文作者。
 - [[wiki/entities/people/Martin Fowler|Martin Fowler]] — MartinFowler.com 主理人/网站关联人物。
@@ -130,6 +134,7 @@ tags:
 - [[wiki/entities/products/Harbor|Harbor]] / [[wiki/entities/products/Daytona|Daytona]]
 - [[wiki/entities/organizations/Thoughtworks|Thoughtworks]] / [[wiki/entities/organizations/Stripe|Stripe]]
 - [[wiki/entities/products/Claude Opus 4.5|Claude Opus 4.5]] / [[wiki/entities/products/Claude Opus 4.6|Claude Opus 4.6]] / [[wiki/entities/products/Claude Sonnet 4.5|Claude Sonnet 4.5]]
+- [[wiki/entities/products/Claude Opus 4.8|Claude Opus 4.8]] / [[wiki/entities/products/Bun|Bun]]
 - [[wiki/entities/products/Aardvark|Aardvark]]
 - [[wiki/entities/products/Chrome DevTools MCP|Chrome DevTools MCP]]
 - [[wiki/entities/products/Puppeteer MCP|Puppeteer MCP]] / [[wiki/entities/products/Playwright MCP|Playwright MCP]]
@@ -142,7 +147,7 @@ tags:
 - [[wiki/themes/长时程智能体工作流|长时程智能体工作流]] — 跨 context/session 的长时程 agent 工作流模式。
 - [[wiki/themes/智能体熵与垃圾回收|智能体熵与垃圾回收]] — AI 生成代码的漂移与持续清理。
 - [[wiki/syntheses/跨来源 harness 定义综合|跨来源 harness 定义综合]] — 当前已 ingest 来源对 harness 边界的定义对照。
-- [[wiki/syntheses/Anthropic 长时程 harness 演化|Anthropic 长时程 harness 演化]] — Anthropic 两篇长时程 harness 文章的演化综合。
+- [[wiki/syntheses/Anthropic 长时程 harness 演化|Anthropic 长时程 harness 演化]] — Anthropic 长时程 harness 从 session continuity、planner/generator/evaluator 到 dynamic workflows 的演化综合。
 - [[wiki/claims/Codex-first 工程证据与注意事项|Codex-first 工程证据与注意事项]] — OpenAI 来源中的关键论断、量化指标与待验证项。
 - [[wiki/claims/长时程 agent harness 证据与注意事项|长时程 agent harness 证据与注意事项]] — Anthropic initializer/coding-agent harness 的关键论断与边界。
 - [[wiki/claims/Planner-generator-evaluator harness 证据与注意事项|Planner-generator-evaluator harness 证据与注意事项]] — Anthropic planner/generator/evaluator harness 的关键论断、成本与边界。
@@ -153,4 +158,5 @@ tags:
 - [[wiki/claims/Agent harness anatomy 证据与注意事项|Agent harness anatomy 证据与注意事项]] — LangChain Anatomy 中 Agent = Model + Harness、filesystem/bash/sandbox/context rot、Ralph Loop 与 model-harness co-evolution 论断。
 - [[wiki/claims/Claude Code shorthand 证据与注意事项|Claude Code shorthand 证据与注意事项]] — @affaan Claude Code 配置实践中的 user harness、MCP/tool budget、hooks、subagents 和并行工作流论断。
 - [[wiki/claims/Codex Goals 证据与注意事项|Codex Goals 证据与注意事项]] — OpenAI Cookbook 中 Goals 的用途、写法、生命周期、继续门控、预算和研究审计论断。
+- [[wiki/claims/Claude Code dynamic workflows 证据与注意事项|Claude Code dynamic workflows 证据与注意事项]] — Claude Code dynamic workflows 的多智能体 JavaScript harness、模式、成本边界和待验证项。
 - 待创建：Codex、Claude Agent SDK、LangChain、NLAH/IHR 在 harness 设计上的差异。

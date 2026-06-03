@@ -2,13 +2,14 @@
 type: concept
 status: draft
 created: 2026-06-01
-updated: 2026-06-01
+updated: 2026-06-03
 aliases:
   - Rules folder
   - CLAUDE.md memory
 sources:
   - "[[wiki/sources/2026-06-01 The Shorthand Guide to Everything Claude Code]]"
   - "[[wiki/sources/2026-05-28 OpenAI’s Michael Bolin on Codex, Harness Engineering, and the Real Future of Coding Agents]]"
+  - "[[wiki/sources/2026-06-03 A harness for every task dynamic workflows in Claude Code]]"
 tags:
   - llm-wiki/concept
   - memory
@@ -31,6 +32,8 @@ Agent Rules and Memory（智能体规则与记忆）是把 agent 应长期遵守
 - 示例 rules 包括 security、coding-style、testing、git-workflow、agents、patterns、performance、hooks。
 - 具体偏好包括不写硬编码 secrets、先测试、模块化、禁止不必要的 `console.log`、前端避免某些颜色等。
 - Bolin 访谈则提醒 `AGENTS.md` 应保持 modest，只记录 agent 不容易从代码推断的信息。
+- Claude Code dynamic workflows 来源补充了反向路径：让 workflow 挖掘最近 session 或 code review comments，聚类用户反复纠正的问题，验证哪些规则能防止真实错误，再沉淀回 `CLAUDE.md`。
+- 对规则遵守任务，来源建议为每条规则派 verifier agent，并用 skeptic persona 检查规则是否合理，降低 false positives。
 
 ## 相关概念
 
@@ -38,9 +41,12 @@ Agent Rules and Memory（智能体规则与记忆）是把 agent 应长期遵守
 - [[wiki/concepts/Agent-readable Codebase|Agent-readable Codebase]]
 - [[wiki/concepts/Context Engineering for Coding Agents|Context Engineering for Coding Agents]]
 - [[wiki/concepts/Coding Agent User Harness|Coding Agent User Harness]]
+- [[wiki/concepts/Dynamic Workflows|Dynamic Workflows]]
+- [[wiki/concepts/External Evaluator Agent|External Evaluator Agent]]
 
 ## 开放问题
 
 - 个人 rules 与项目 rules 冲突时，优先级如何定义？
 - Rules 过多时如何避免 context rot？
 - 哪些长期偏好应该升级为 hook/lint/test，而不是停留在自然语言？
+- workflow 自动挖掘出来的规则如何防止过拟合单次失败或个人临时偏好？

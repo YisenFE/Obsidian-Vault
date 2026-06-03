@@ -2,7 +2,7 @@
 type: concept
 status: draft
 created: 2026-05-28
-updated: 2026-05-29
+updated: 2026-06-03
 sources:
   - "[[wiki/sources/2026-05-28 工程技术：在智能体优先的世界中利用 Codex]]"
   - "[[wiki/sources/2026-05-28 Effective harnesses for long-running agents]]"
@@ -12,6 +12,7 @@ sources:
   - "[[wiki/sources/2026-05-28 Natural-Language Agent Harnesses]]"
   - "[[wiki/sources/2026-05-28 OpenAI’s Michael Bolin on Codex, Harness Engineering, and the Real Future of Coding Agents]]"
   - "[[wiki/sources/2026-05-28 The Anatomy of an Agent Harness]]"
+  - "[[wiki/sources/2026-06-03 A harness for every task dynamic workflows in Claude Code]]"
 tags:
   - llm-wiki/concept
   - harness-engineering
@@ -50,6 +51,9 @@ tags:
 - 该来源用“想要的 agent 行为 → harness design”推导组件：filesystem/git、bash/code execution、sandbox/default tooling、memory/web/MCP、compaction/tool offloading/skills、Ralph Loop/planning/verification。
 - 这篇文章还补充了 [[wiki/concepts/Model-Harness Co-evolution|Model-Harness Co-evolution]]：有用 primitive 会被加入 harness 并进入下一代模型训练循环，但也可能带来 tool-logic overfitting。
 
+- Claude Code dynamic workflows 来源加入“动态生成 harness”的方向：Claude 可以按任务编写 JavaScript workflow，组合 classify-and-act、fan-out-and-synthesize、adversarial verification、tournament、loop until done 等模式。
+- 该来源强调 harness engineering 需要做资源判断：workflow 更耗 token，适合复杂、高价值、对抗性或大规模并行任务，而不是所有 coding task 的默认流程。
+
 ## 相关概念
 
 - [[wiki/concepts/Agent Loop|Agent Loop]]
@@ -71,6 +75,8 @@ tags:
 - [[wiki/concepts/Middleware Hooks|Middleware Hooks]]
 - [[wiki/concepts/Trace-driven Harness Iteration|Trace-driven Harness Iteration]]
 - [[wiki/concepts/Computational and Inferential Controls|Computational and Inferential Controls]]
+- [[wiki/concepts/Dynamic Workflows|Dynamic Workflows]]
+- [[wiki/concepts/Long-running Agent Failure Modes|Long-running Agent Failure Modes]]
 
 ## 开放问题
 
@@ -82,3 +88,4 @@ tags:
 - 用户侧 harness 与平台/产品侧 harness 的边界在哪里？
 - 如何评估 harness coverage、harness quality 和 harnessability？
 - 如何避免 trace-driven optimization 过拟合某个 benchmark 或任务集？
+- task-specific dynamic workflow 如何避免为了“更多流程”而制造额外成本和判断噪声？

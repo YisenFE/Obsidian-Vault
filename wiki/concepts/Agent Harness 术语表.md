@@ -2,7 +2,7 @@
 type: glossary
 status: active
 created: 2026-05-29
-updated: 2026-05-29
+updated: 2026-06-03
 sources:
   - "[[wiki/index]]"
   - "[[AGENTS]]"
@@ -11,6 +11,7 @@ sources:
   - "[[wiki/sources/2026-05-28 The Anatomy of an Agent Harness]]"
   - "[[wiki/sources/2026-06-01 The Shorthand Guide to Everything Claude Code]]"
   - "[[wiki/sources/2026-06-01 Using Goals in Codex]]"
+  - "[[wiki/sources/2026-06-03 A harness for every task dynamic workflows in Claude Code]]"
 tags:
   - llm-wiki/concept
   - glossary
@@ -81,3 +82,12 @@ tags:
 | Verification Surface | 验证面 | 用来证明目标完成的测试、benchmark、日志、文件、artifact 或研究材料。 |
 | Continuation Gate | 继续门控 | 判断 Goal 是否可自动继续的安全边界，如 thread idle、无 queued input、within budget。 |
 | Evidence-Based Completion | 证据驱动完成 | 只有具体证据支持目标达成时才标记完成。 |
+| Dynamic Workflow | 动态工作流 | Claude Code 中由 Claude 为当前任务现场生成/执行的 JavaScript 多智能体 workflow。 |
+| Task-specific Harness | 面向任务的定制支架 | 围绕当前任务风险、结构、验证和资源约束动态组织的 harness。 |
+| Agentic Laziness | 智能体懒惰 | 智能体在复杂多部分任务中只做部分进展就提前宣称完成。 |
+| Self-preferential Bias | 自我偏好偏差 | 智能体在验证或评价时过度相信自己的输出。 |
+| Goal Drift | 目标漂移 | 长任务或 compaction 后，原始目标、边缘约束或负约束逐步丢失。 |
+| Fan-out-and-synthesize | 分发并综合 | 并行处理多个子任务，再在 barrier step 合并结构化输出。 |
+| Adversarial Verification | 对抗式验证 | 用独立 verifier agent 按 rubric 挑错和验证结果。 |
+| Tournament | 锦标赛式比较 | 多个 agent 竞争完成同一任务，再通过 pairwise judging 筛出赢家。 |
+| Quarantine | 隔离区 | 处理不可信内容的 agent 不直接执行高权限动作，由可信执行角色隔离处理。 |

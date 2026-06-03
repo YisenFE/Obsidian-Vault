@@ -165,3 +165,15 @@ tags:
 - 创建论断页：[[wiki/claims/Codex Goals 证据与注意事项]]。
 - 更新 [[wiki/index]] 与 [[wiki/overview]]，登记该来源并纳入当前总览。
 - 待验证：raw frontmatter 的 author 字段像剪藏误抽取，published 为空；Codex 0.128.0、Goals 命令表面、预算策略和 lifecycle 行为可能随产品版本变化。
+
+## [2026-06-03] ingest | A harness for every task: dynamic workflows in Claude Code
+
+- 读取 [[raw/2026-06-03 A harness for every task dynamic workflows in Claude Code]]；raw 文本未改。
+- 使用 Claude blog 外部页面核对元数据：发表日期为 2026-06-02，作者为 [[wiki/entities/people/Thariq Shihipar]] 与 [[wiki/entities/people/Sid Bidasaria]]；raw frontmatter 的 `published: 2001-06-02` 记录为待确认剪藏元数据错误，未直接修正 raw。
+- 创建来源摘要：[[wiki/sources/2026-06-03 A harness for every task dynamic workflows in Claude Code]]。
+- 创建概念页：[[wiki/concepts/Dynamic Workflows]]、[[wiki/concepts/Long-running Agent Failure Modes]]。
+- 更新概念/主题/综合页：[[wiki/concepts/Agent Harness]]、[[wiki/concepts/Harness Engineering]]、[[wiki/concepts/Claude Code Operating Harness]]、[[wiki/concepts/Parallel Agent Workflows]]、[[wiki/concepts/Subagent Scoping]]、[[wiki/concepts/Agent Rules and Memory]]、[[wiki/concepts/Self-verification]]、[[wiki/concepts/External Evaluator Agent]]、[[wiki/concepts/Context Reset vs Compaction]]、[[wiki/concepts/Agent Harness 术语表]]、[[wiki/themes/长时程智能体工作流]]、[[wiki/syntheses/Anthropic 长时程 harness 演化]]。
+- 创建/更新实体页：[[wiki/entities/people/Thariq Shihipar]]、[[wiki/entities/people/Sid Bidasaria]]、[[wiki/entities/organizations/Anthropic]]、[[wiki/entities/products/Claude Code]]、[[wiki/entities/products/Claude Agent SDK]]、[[wiki/entities/products/Claude Opus 4.8]]、[[wiki/entities/products/Bun]]。
+- 创建论断页：[[wiki/claims/Claude Code dynamic workflows 证据与注意事项]]。
+- 更新 [[wiki/index]] 与 [[wiki/overview]]，登记该来源并纳入当前总览。
+- 待验证：dynamic workflows 的质量提升、token 成本、恢复语义、quarantine 权限隔离、Bun 迁移案例和 Claude Code 产品细节均为来源时点陈述；外部图示未下载到 `raw/assets/`。
