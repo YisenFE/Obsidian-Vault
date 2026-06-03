@@ -1,0 +1,25 @@
+{
+  "id": "conv-1779983875530-rw41gkp8l",
+  "providerId": "codex",
+  "title": "Add new article",
+  "titleGenerationStatus": "success",
+  "createdAt": 1779983875530,
+  "updatedAt": 1779983965569,
+  "lastResponseAt": 1779983963665,
+  "sessionId": "019e6f4e-7f6c-7ad2-bd43-337013a6ebec",
+  "providerState": {
+    "threadId": "019e6f4e-7f6c-7ad2-bd43-337013a6ebec",
+    "sessionFilePath": "/Users/bytedance/.codex/sessions/2026/05/28/rollout-2026-05-28T23-57-55-019e6f4e-7f6c-7ad2-bd43-337013a6ebec.jsonl",
+    "transcriptRootPath": "/Users/bytedance/.codex/sessions"
+  },
+  "usage": {
+    "inputTokens": 41861,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 33152,
+    "contextWindow": 258400,
+    "contextWindowIsAuthoritative": true,
+    "contextTokens": 41861,
+    "percentage": 16,
+    "model": "gpt-5.5"
+  }
+}

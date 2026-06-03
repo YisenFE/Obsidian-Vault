@@ -1,0 +1,25 @@
+{
+  "id": "conv-1779981372327-lca47xelo",
+  "providerId": "codex",
+  "title": "Create folder structure from Karpathy method",
+  "titleGenerationStatus": "success",
+  "createdAt": 1779981372328,
+  "updatedAt": 1780466032550,
+  "lastResponseAt": 1780025459849,
+  "sessionId": "019e6f28-5ba9-7510-8cc3-6550b86e583b",
+  "providerState": {
+    "threadId": "019e6f28-5ba9-7510-8cc3-6550b86e583b",
+    "sessionFilePath": "/Users/bytedance/.codex/sessions/2026/05/28/rollout-2026-05-28T23-16-16-019e6f28-5ba9-7510-8cc3-6550b86e583b.jsonl",
+    "transcriptRootPath": "/Users/bytedance/.codex/sessions"
+  },
+  "usage": {
+    "inputTokens": 76550,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 59776,
+    "contextWindow": 258400,
+    "contextWindowIsAuthoritative": true,
+    "contextTokens": 76550,
+    "percentage": 30,
+    "model": "gpt-5.5"
+  }
+}
