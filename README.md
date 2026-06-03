@@ -7,7 +7,7 @@
 ## 快速入口
 
 - [AGENTS.md](AGENTS.md)：LLM 维护本 vault 时必须遵守的 schema、目录规范和工作流。
-- [Karpathy wiki 方法论.md](Karpathy\ wiki\ 方法论.md)：本知识库三层模型的方法论来源。
+- [Karpathy wiki 方法论.md](Karpathy wiki 方法论.md)：本知识库三层模型的方法论来源。
 - [wiki/index.md](wiki/index.md)：wiki 内容目录，ingest 或 query 前优先阅读。
 - [wiki/overview.md](wiki/overview.md)：当前领域总览、高层判断、研究边界和后续问题。
 - [wiki/log.md](wiki/log.md)：追加式操作日志。
