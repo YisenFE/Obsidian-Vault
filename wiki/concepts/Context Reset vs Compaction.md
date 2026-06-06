@@ -2,7 +2,7 @@
 type: concept
 status: draft
 created: 2026-05-29
-updated: 2026-06-03
+updated: 2026-06-05
 sources:
   - "[[wiki/sources/2026-05-28 Harness design for long-running application development]]"
   - "[[wiki/sources/2026-05-28 Effective harnesses for long-running agents]]"
@@ -10,6 +10,7 @@ sources:
   - "[[wiki/sources/2026-05-28 OpenAI’s Michael Bolin on Codex, Harness Engineering, and the Real Future of Coding Agents]]"
   - "[[wiki/sources/2026-05-28 The Anatomy of an Agent Harness]]"
   - "[[wiki/sources/2026-06-03 A harness for every task dynamic workflows in Claude Code]]"
+  - "[[wiki/sources/2026-06-06 Agents that remember]]"
 tags:
   - llm-wiki/concept
   - context-management
@@ -43,6 +44,9 @@ tags:
 - Claude Code dynamic workflows 来源把 goal drift 明确归因到长任务和 compaction 的有损摘要：边缘需求和 “不要做 X” 这类负约束可能丢失。
 - Dynamic workflow 的另一种缓解方式不是继续压缩同一上下文，而是让多个子智能体拥有自己的干净上下文窗口和聚焦目标。
 
+- Agents that remember 来源提供了第三种跨 session 连续性路径：不是只重置/压缩当前上下文，而是在新 session 创建时挂载长期 [[wiki/concepts/Agent Memory Stores|memory store]]。
+- [[wiki/concepts/Dreaming for Agent Memory|Dreaming]] 则把“压缩历史”改成异步维护长期记忆：读取 transcripts 和 memory store，生成新的 output store，而不是把全部历史塞进下一次 context。
+
 ## 相关概念
 
 - [[wiki/concepts/Context Engineering for Coding Agents|Context Engineering for Coding Agents]]
@@ -57,6 +61,8 @@ tags:
 - [[wiki/concepts/Tool Call Offloading|Tool Call Offloading]]
 - [[wiki/concepts/Dynamic Workflows|Dynamic Workflows]]
 - [[wiki/concepts/Long-running Agent Failure Modes|Long-running Agent Failure Modes]]
+- [[wiki/concepts/Agent Memory Stores|Agent Memory Stores]]
+- [[wiki/concepts/Dreaming for Agent Memory|Dreaming for Agent Memory]]
 
 ## 开放问题
 
@@ -64,3 +70,4 @@ tags:
 - Handoff artifact 最小应包含哪些字段，才能安全使用 reset？
 - 什么时候 reset 的 clean slate 价值超过它带来的成本和状态损失？
 - 多子智能体 clean context 能否替代一部分 compaction，还是只把 handoff 问题转移到 workflow synthesis 阶段？
+- Memory store 是否会降低 reset/handoff 成本，还是引入新的 stale memory 风险？

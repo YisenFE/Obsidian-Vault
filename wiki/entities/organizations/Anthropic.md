@@ -2,12 +2,13 @@
 type: organization
 status: draft
 created: 2026-05-29
-updated: 2026-06-03
+updated: 2026-06-05
 sources:
   - "[[wiki/sources/2026-05-28 Effective harnesses for long-running agents]]"
   - "[[wiki/sources/2026-05-28 Harness design for long-running application development]]"
   - "[[wiki/sources/2026-06-01 The Shorthand Guide to Everything Claude Code]]"
   - "[[wiki/sources/2026-06-03 A harness for every task dynamic workflows in Claude Code]]"
+  - "[[wiki/sources/2026-06-06 Agents that remember]]"
 tags:
   - llm-wiki/entity/organization
   - anthropic
@@ -27,14 +28,20 @@ Anthropic 是 Claude、[[wiki/entities/products/Claude Agent SDK|Claude Agent SD
 
 - [[wiki/sources/2026-06-01 The Shorthand Guide to Everything Claude Code|The Shorthand Guide to Everything Claude Code]] 是第三方用户经验来源，围绕 Anthropic 的 Claude Code 产品整理个人配置实践；其中提到 Anthropic x Forum Ventures hackathon，但核心价值是 Claude Code user harness。
 - [[wiki/sources/2026-06-03 A harness for every task dynamic workflows in Claude Code|A harness for every task]] 是 Claude blog 官方来源，介绍 Claude Code dynamic workflows：按任务生成 JavaScript 多智能体 harness，并用独立上下文、模型路由、worktree 隔离和对抗验证处理复杂任务。
+- [[wiki/sources/2026-06-06 Agents that remember|Agents that remember]] 是 Claude workshop transcript，介绍 Claude Managed Agents 的 memory stores 与 dreaming：用文件系统式 memory 跨 session 持久化，再用异步多智能体 harness 整理长期记忆。
 
 ## 相关页面
 
 - [[wiki/entities/products/Claude Agent SDK|Claude Agent SDK]]
 - [[wiki/entities/products/Claude Code|Claude Code]]
+- [[wiki/entities/products/Claude Managed Agents|Claude Managed Agents]]
+- [[wiki/entities/products/Claude Platform|Claude Platform]]
 - [[wiki/entities/products/Claude Opus 4.6|Claude Opus 4.6]]
+- [[wiki/entities/products/Claude Opus 4.7|Claude Opus 4.7]]
 - [[wiki/entities/products/Claude Opus 4.8|Claude Opus 4.8]]
 - [[wiki/concepts/Harness Engineering|Harness Engineering]]
 - [[wiki/concepts/Dynamic Workflows|Dynamic Workflows]]
+- [[wiki/concepts/Agent Memory Stores|Agent Memory Stores]]
+- [[wiki/concepts/Dreaming for Agent Memory|Dreaming for Agent Memory]]
 - [[wiki/themes/长时程智能体工作流|长时程智能体工作流]]
 - [[wiki/syntheses/Anthropic 长时程 harness 演化|Anthropic 长时程 harness 演化]]

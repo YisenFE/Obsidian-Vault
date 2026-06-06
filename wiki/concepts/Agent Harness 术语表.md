@@ -2,7 +2,7 @@
 type: glossary
 status: active
 created: 2026-05-29
-updated: 2026-06-03
+updated: 2026-06-05
 sources:
   - "[[wiki/index]]"
   - "[[AGENTS]]"
@@ -12,6 +12,7 @@ sources:
   - "[[wiki/sources/2026-06-01 The Shorthand Guide to Everything Claude Code]]"
   - "[[wiki/sources/2026-06-01 Using Goals in Codex]]"
   - "[[wiki/sources/2026-06-03 A harness for every task dynamic workflows in Claude Code]]"
+  - "[[wiki/sources/2026-06-06 Agents that remember]]"
 tags:
   - llm-wiki/concept
   - glossary
@@ -91,3 +92,8 @@ tags:
 | Adversarial Verification | 对抗式验证 | 用独立 verifier agent 按 rubric 挑错和验证结果。 |
 | Tournament | 锦标赛式比较 | 多个 agent 竞争完成同一任务，再通过 pairwise judging 筛出赢家。 |
 | Quarantine | 隔离区 | 处理不可信内容的 agent 不直接执行高权限动作，由可信执行角色隔离处理。 |
+| Memory Store | 记忆存储 | 挂载到 agent session 的持久文件系统式状态层，用于跨 session 保存和读取记忆。 |
+| Dreaming | 记忆整理 / 梦境整理 | 异步读取历史 sessions 和 memory store，去重、核查、补充并生成新 memory store 的多智能体流程。 |
+| Output Memory Store | 输出记忆存储 | Dreaming 生成的新 store；input store 不被直接修改，方便 review 和切换。 |
+| Memory Version | 记忆版本 | memory store 中每次变更产生的不可变版本记录，用于审计、恢复和 redaction。 |
+| Read-only Memory | 只读记忆 | 允许 agent 读取但不写入的 memory store access mode，适合共享参考资料或不可信输入场景。 |

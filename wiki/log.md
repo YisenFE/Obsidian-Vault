@@ -177,3 +177,20 @@ tags:
 - 创建论断页：[[wiki/claims/Claude Code dynamic workflows 证据与注意事项]]。
 - 更新 [[wiki/index]] 与 [[wiki/overview]]，登记该来源并纳入当前总览。
 - 待验证：dynamic workflows 的质量提升、token 成本、恢复语义、quarantine 权限隔离、Bun 迁移案例和 Claude Code 产品细节均为来源时点陈述；外部图示未下载到 `raw/assets/`。
+
+## [2026-06-05] ingest | Agents that remember
+
+- 读取 [[raw/2026-06-06 Agents that remember]]；raw 文本未改。
+- 使用 Claude API Docs 的 agent memory / dreams 页面与 Claude blog 的 Managed Agents 发布文章补充核对 memory stores、dreaming、research preview、权限和版本审计等产品细节。
+- 创建来源摘要：[[wiki/sources/2026-06-06 Agents that remember]]。
+- 创建概念页：[[wiki/concepts/Agent Memory Stores]]、[[wiki/concepts/Dreaming for Agent Memory]]。
+- 更新概念/主题/综合页：[[wiki/concepts/Agent Memory and Session Handoff]]、[[wiki/concepts/File-backed State]]、[[wiki/concepts/Context Reset vs Compaction]]、[[wiki/concepts/Harness Engineering]]、[[wiki/concepts/Dynamic Workflows]]、[[wiki/concepts/Agent Harness 术语表]]、[[wiki/themes/长时程智能体工作流]]、[[wiki/syntheses/Anthropic 长时程 harness 演化]]。
+- 创建/更新实体页：[[wiki/entities/organizations/Anthropic]]、[[wiki/entities/products/Claude Managed Agents]]、[[wiki/entities/products/Claude Platform]]、[[wiki/entities/products/Claude Opus 4.7]]、[[wiki/entities/products/Claude Sonnet 4.6]]、[[wiki/entities/products/Claude Opus 4.8]]。
+- 创建论断页：[[wiki/claims/Claude Managed Agents memory 与 dreaming 证据与注意事项]]。
+- 更新 [[wiki/index]] 与 [[wiki/overview]]，登记该来源并纳入当前总览。
+- 待验证：speaker Kevin 的全名、dreaming 的 token/cost 预期、95% cache hit rate、质量提升、API/Console 细节、read-write memory store 的实际安全防线；raw 文件名/frontmatter `created: 2026-06-06` 与本地 ingest 日期 2026-06-05 不一致，raw 未改。
+
+## [2026-06-06] query | Claude Code 有必要使用 memory store 和 dreaming 吗
+
+- 基于 [[wiki/concepts/Agent Memory Stores]]、[[wiki/concepts/Dreaming for Agent Memory]]、[[wiki/concepts/Claude Code Operating Harness]] 和 [[wiki/concepts/Agent Rules and Memory]]，沉淀判断：Claude Code 日常编码优先使用 `CLAUDE.md`、auto memory、rules、skills、hooks、subagents、dynamic workflows 和测试验证；memory store / dreaming 更适合 Claude Managed Agents 或平台托管、跨 session、可审计长期记忆场景。
+- 创建问题页：[[wiki/questions/Claude Code 有必要使用 memory store 和 dreaming 吗]]。

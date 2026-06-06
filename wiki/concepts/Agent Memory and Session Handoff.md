@@ -2,7 +2,7 @@
 type: concept
 status: draft
 created: 2026-05-29
-updated: 2026-05-29
+updated: 2026-06-05
 sources:
   - "[[wiki/sources/2026-05-28 Effective harnesses for long-running agents]]"
   - "[[wiki/sources/2026-05-28 Harness design for long-running application development]]"
@@ -11,6 +11,7 @@ sources:
   - "[[wiki/sources/2026-05-28 The Anatomy of an Agent Harness]]"
   - "[[wiki/sources/2026-06-01 The Shorthand Guide to Everything Claude Code]]"
   - "[[wiki/sources/2026-06-01 Using Goals in Codex]]"
+  - "[[wiki/sources/2026-06-06 Agents that remember]]"
 tags:
   - llm-wiki/concept
   - agent-memory
@@ -52,6 +53,10 @@ tags:
 - Codex Goals 来源说明 Goal 是 thread-scoped durable state：它能跨 turn 保存 objective/status/budget/usage，但不等于 global memory 或 project-level instruction。
 - 这给 memory 分层提供了一个中间层：比单轮 prompt 持久，比项目记忆更局部，绑定当前 thread 的证据轨迹。
 
+- Agents that remember 来源把 handoff 从“手写 progress artifact”推进到产品级 [[wiki/concepts/Agent Memory Stores|Agent Memory Stores]]：session 可挂载持久 memory store，让 agent 跨 session 读写偏好、项目约定、历史错误和领域上下文。
+- 同一来源也说明 memory store 会积累重复、过时和冲突内容，因此需要 [[wiki/concepts/Dreaming for Agent Memory|Dreaming for Agent Memory]] 这类异步整理层来维护长期记忆质量。
+- 这给 memory 分层补充了更细结构：session 是临时执行实例，memory store 是跨 session 状态层，dreaming 是跨 session 的记忆维护/治理层。
+
 ## 相关概念
 
 - [[wiki/concepts/File-backed State|File-backed State]]
@@ -69,6 +74,8 @@ tags:
 - [[wiki/concepts/Agent Rules and Memory|Agent Rules and Memory]]
 
 - [[wiki/concepts/Codex Goals|Codex Goals]]
+- [[wiki/concepts/Agent Memory Stores|Agent Memory Stores]]
+- [[wiki/concepts/Dreaming for Agent Memory|Dreaming for Agent Memory]]
 
 ## 开放问题
 
@@ -77,3 +84,4 @@ tags:
 - 交接文件应该是一份 `progress.txt`、结构化 JSON，还是进入正式 issue/plan 系统？
 - 哪些状态应由 git history 表达，哪些应由 progress note、sprint contract 或 evaluator log 表达？
 - Session handoff 与长期 memory store 的边界在哪里？
+- Memory store、repo 文件、rules 和 thread-scoped goal state 之间的优先级如何定义？

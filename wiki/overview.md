@@ -2,7 +2,7 @@
 type: overview
 status: evolving
 created: 2026-05-28
-updated: 2026-06-03
+updated: 2026-06-05
 sources:
   - "[[Karpathy wiki 方法论]]"
   - "[[wiki/sources/2026-05-28 工程技术：在智能体优先的世界中利用 Codex]]"
@@ -16,12 +16,13 @@ sources:
   - "[[wiki/sources/2026-06-01 The Shorthand Guide to Everything Claude Code]]"
   - "[[wiki/sources/2026-06-01 Using Goals in Codex]]"
   - "[[wiki/sources/2026-06-03 A harness for every task dynamic workflows in Claude Code]]"
+  - "[[wiki/sources/2026-06-06 Agents that remember]]"
 tags:
   - llm-wiki/overview
 ---
 # 总览
 
-本 wiki 当前围绕智能体工作支架（agent harness）、智能体工作支架工程（harness engineering）、Codex-first development、长时程 agent、coding-agent 用户侧 harness、基于执行轨迹的 harness 迭代、可执行自然语言 harness representation，以及 Claude Code dynamic workflows 展开。已 ingest 的来源包括 OpenAI、Anthropic、MartinFowler.com / Birgitta Böckeler、LangChain、arXiv NLAH 论文、Michael Bolin 的 Codex 访谈、LangChain 的 agent harness anatomy、Claude Code 用户侧配置实践、Codex Goals 指南与 Claude Code dynamic workflows 官方文章。
+本 wiki 当前围绕智能体工作支架（agent harness）、智能体工作支架工程（harness engineering）、Codex-first development、长时程 agent、coding-agent 用户侧 harness、基于执行轨迹的 harness 迭代、可执行自然语言 harness representation、Claude Code dynamic workflows，以及 Claude Managed Agents memory/dreaming 展开。已 ingest 的来源包括 OpenAI、Anthropic、MartinFowler.com / Birgitta Böckeler、LangChain、arXiv NLAH 论文、Michael Bolin 的 Codex 访谈、LangChain 的 agent harness anatomy、Claude Code 用户侧配置实践、Codex Goals 指南、Claude Code dynamic workflows 官方文章与 Agents that remember workshop。
 
 ## 当前高层判断
 
@@ -35,6 +36,7 @@ tags:
 - **用户侧 harness 已经细化到个人操作系统。** Claude Code shorthand 来源展示了更具体的一层：skills/commands 负责复用流程，hooks 负责自动反馈，subagents 负责范围限定，rules/memory 负责长期偏好，MCP/plugins 负责能力扩展，worktrees/tmux/editor/statusline 负责并行隔离和可观察性。
 - **Claude Code dynamic workflows 把 harness 变成按任务生成。** 新来源说明 Claude Code 可以执行 JavaScript workflow，动态 spawn subagents、选择模型和 worktree 隔离，并组合 fan-out、adversarial verification、tournament、loop-until-done 等模式；它更适合复杂、高价值、长时程或对抗性任务，而不是所有 coding task 的默认解法。
 - **长任务失败模式正在被显式命名。** Dynamic workflows 来源把 agentic laziness、自我偏好偏差和 goal drift 作为单上下文复杂任务的核心风险；这把 completion contract、external evaluator、file-backed state、clean context 和 workflow synthesis 的价值连接得更清楚。
+- **长期 memory 本身也需要 harness。** Agents that remember 来源把跨 session memory 产品化为 mounted file-system-like memory store，同时用 dreaming 异步整理重复、过时、冲突和无界增长的记忆；这说明 memory 不只是“存下来”，还要有范围、权限、版本、审计、review 和 consolidation。
 - **Feedforward + feedback 是用户侧 harness 的核心。** 生成前引导（feedforward guides）提高首次生成正确率；生成后反馈检测器（feedback sensors）把问题尽量留在 agent 自修正、人类 review、pipeline、连续健康监控或 trace-driven improvement loop 中。
 - **自然语言适合承载 harness policy，但不应替代所有代码。** NLAH 论文把 roles、contracts、evidence、validation、handoff 和 stopping conditions 放进自然语言文档；parser、tool execution、sandbox、adapter、logging、validator 仍应由代码层承担。
 - **Codex 访谈提供了 small-tool-surface 取向。** Bolin 倾向让 harness 尽量小而紧，给 agent 少量强工具（例如 terminal）和足够 sandbox backstop，而不是为每个操作都做专用 wrapper。
@@ -52,9 +54,10 @@ tags:
 
 - 原始资料在 `raw/`；除新增本地媒体资产用于读取图示/视频外，未改写 raw 文本。
 - `wiki/` 会逐篇 ingest 并演化综合，不提前把未处理来源合成为结论。
-- 当前综合主要来自 OpenAI、Anthropic、MartinFowler.com/Thoughtworks 风格来源、LangChain、Michael Bolin 访谈、Claude Code 第三方用户实践、Claude Code 官方 dynamic workflows 文章与 NLAH arXiv 论文。
+- 当前综合主要来自 OpenAI、Anthropic、MartinFowler.com/Thoughtworks 风格来源、LangChain、Michael Bolin 访谈、Claude Code 第三方用户实践、Claude Code 官方 dynamic workflows 文章、Claude Managed Agents memory/dreaming workshop 与 NLAH arXiv 论文。
 - 两篇 Anthropic 来源的 raw frontmatter 缺失 `author`/`published`；wiki 中作者来自正文，发布日期来自官方页面，raw 未改动。NLAH raw frontmatter 的 `published` 为空，本 wiki 记录 arXiv v2 日期，raw 未改。
 - Claude Code dynamic workflows raw frontmatter 的 `published: 2001-06-02` 与外部页面 2026-06-02 不一致；wiki 按外部页面记录，raw 未改。
+- Agents that remember raw 文件名/frontmatter `created: 2026-06-06` 与本地 ingest 日期 2026-06-05 不一致；raw 未改。
 
 ## 初始研究问题
 
@@ -75,6 +78,8 @@ tags:
 15. 可执行自然语言 harness 如何做 provenance、权限、沙箱和供应链安全审查？
 16. Dynamic workflows 与 static workflows、skills、subagents、hooks 的复用边界在哪里？
 17. 对抗验证和 tournament workflow 的 token 成本、false positives 与质量提升如何量化？
+18. Memory store、repo/system-of-record、rules file、thread goal state 之间应如何分层？
+19. Dreaming 输出的长期 memory 应如何做人类 review、rollback、archive 和权限审计？
 
 ## 下一步建议
 
@@ -84,3 +89,4 @@ tags:
 4. 把 Claude Code shorthand 的个人配置经验抽象成团队级最小 harness checklist，并验证 MCP/tool budget。
 5. 把 Codex Goals 的 completion contract 模板迁移到 wiki ingest / research audit / code review 等长任务。
 6. 把 Claude Code dynamic workflow patterns 抽象成可选模板，并记录哪些任务确实需要额外 compute。
+7. 设计本 vault 的 memory/dreaming 类比：哪些事实进入 wiki，哪些进入 transient notes，哪些需要定期 consolidation。

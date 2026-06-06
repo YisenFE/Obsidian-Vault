@@ -2,11 +2,12 @@
 type: concept
 status: draft
 created: 2026-05-29
-updated: 2026-05-29
+updated: 2026-06-05
 sources:
   - "[[wiki/sources/2026-05-28 Natural-Language Agent Harnesses]]"
   - "[[wiki/sources/2026-05-28 Effective harnesses for long-running agents]]"
   - "[[wiki/sources/2026-05-28 The Anatomy of an Agent Harness]]"
+  - "[[wiki/sources/2026-06-06 Agents that remember]]"
 tags:
   - llm-wiki/concept
   - agent-memory
@@ -31,6 +32,10 @@ tags:
 - LangChain Anatomy 来源将 filesystem 视为 file-backed state 的基础设施：agent 可以把中间输出、长期状态和协作痕迹写入 workspace，而不是全部留在上下文窗口。
 - Git 进一步为 file-backed state 提供 history、rollback 和 branching，使新 agent 能通过文件与提交历史接续工作。
 
+- Agents that remember 来源把 file-backed state 产品化为 [[wiki/concepts/Agent Memory Stores|Agent Memory Stores]]：memory store 作为 filesystem-like resource 挂载到 session container，agent 用 bash、grep 和文件读写工具跨 session 访问。
+- 官方 docs 补充 memory files 以 path 寻址并产生不可变 versions，因此 file-backed state 不只是可读写，也可以被审计、回滚和 redaction。
+- 同一来源也提示 file-backed state 需要维护层：[[wiki/concepts/Dreaming for Agent Memory|Dreaming]] 通过异步多智能体 harness 对 memory store 做去重、更新和结构化。
+
 ## 相关概念
 
 - [[wiki/concepts/Agent Memory and Session Handoff|Agent Memory and Session Handoff]]
@@ -40,9 +45,12 @@ tags:
 
 - [[wiki/concepts/Filesystem as Harness Primitive|Filesystem as Harness Primitive]]
 - [[wiki/concepts/Tool Call Offloading|Tool Call Offloading]]
+- [[wiki/concepts/Agent Memory Stores|Agent Memory Stores]]
+- [[wiki/concepts/Dreaming for Agent Memory|Dreaming for Agent Memory]]
 
 ## 开放问题
 
 - 哪些状态必须 file-backed，哪些可以保留在上下文中？
 - File-backed state 应按任务、session、agent role 还是 artifact type 分层？
 - 如何自动检测 file-backed state 陈旧或相互冲突？
+- 可写 memory store 如何防止不可信输入污染长期状态？

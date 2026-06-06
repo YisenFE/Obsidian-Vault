@@ -2,7 +2,7 @@
 type: index
 status: active
 created: 2026-05-28
-updated: 2026-06-03
+updated: 2026-06-05
 tags:
   - llm-wiki/index
 ---
@@ -34,6 +34,7 @@ tags:
 | [[wiki/sources/2026-06-01 The Shorthand Guide to Everything Claude Code|The Shorthand Guide to Everything Claude Code]] | ingested | @affaan：Claude Code 日常 operating harness；skills/commands、hooks、subagents、rules/memory、MCP/plugin context budget、worktrees/tmux、editor integration。 |
 | [[wiki/sources/2026-06-01 Using Goals in Codex|Using Goals in Codex]] | ingested | OpenAI Cookbook：Codex Goals；thread-scoped completion contract、verification surface、continuation gates、budget accounting、research audit。 |
 | [[wiki/sources/2026-06-03 A harness for every task dynamic workflows in Claude Code|A harness for every task: dynamic workflows in Claude Code]] | ingested | Claude blog：Claude Code dynamic workflows；按任务生成 JavaScript 多智能体 harness，组合 fan-out、对抗验证、tournament、loop until done、模型路由和 worktree 隔离。 |
+| [[wiki/sources/2026-06-06 Agents that remember|Agents that remember]] | ingested | Claude workshop：Claude Managed Agents memory stores 与 dreaming；用文件系统式记忆跨 session 持久化，并用异步多智能体 harness 整理长期记忆。 |
 
 ## 概念
 
@@ -92,6 +93,8 @@ tags:
 - [[wiki/concepts/Local Context Injection|Local Context Injection]] — harness 主动注入目录、工具、约束和评估标准。
 - [[wiki/concepts/Reasoning Budgeting|Reasoning Budgeting]] — 在计划、构建、验证阶段分配不同推理预算。
 - [[wiki/concepts/Agent Memory and Session Handoff|Agent Memory and Session Handoff]] — 用 progress file、git history、feature list 等外化状态桥接 context/session。
+- [[wiki/concepts/Agent Memory Stores|Agent Memory Stores]] — 智能体记忆存储：挂载到 session 的持久文件系统式状态层，用于跨 session 保存和读取记忆。
+- [[wiki/concepts/Dreaming for Agent Memory|Dreaming for Agent Memory]] — 智能体记忆整理：异步读取 memory store 与历史 transcripts，生成去重、更新、结构化后的 output memory store。
 - [[wiki/concepts/Feature List as Test Contract|Feature List as Test Contract]] — 把功能清单作为不可随意改写的验收契约。
 - [[wiki/concepts/Self-verification|Self-verification]] — 让 agent 在声明完成前运行端到端、用户视角、可复现验证。
 - [[wiki/concepts/Planner-Generator-Evaluator Harness|Planner-Generator-Evaluator Harness]] — planner 定规格、generator 构建、evaluator 外部 QA 的多智能体 harness。
@@ -121,7 +124,7 @@ tags:
 ### 组织 / 产品
 
 - [[wiki/entities/organizations/OpenAI|OpenAI]] / [[wiki/entities/products/Codex|Codex]] / [[wiki/entities/products/Codex CLI|Codex CLI]] / [[wiki/entities/products/Codex App|Codex App]] / [[wiki/entities/products/GPT-5|GPT-5]] / [[wiki/entities/products/GPT-5.2-Codex|GPT-5.2-Codex]] / [[wiki/entities/products/GPT-5.4-Mini|GPT-5.4-Mini]]
-- [[wiki/entities/organizations/Anthropic|Anthropic]] / [[wiki/entities/products/Claude Agent SDK|Claude Agent SDK]] / [[wiki/entities/products/Claude Code|Claude Code]]
+- [[wiki/entities/organizations/Anthropic|Anthropic]] / [[wiki/entities/products/Claude Agent SDK|Claude Agent SDK]] / [[wiki/entities/products/Claude Code|Claude Code]] / [[wiki/entities/products/Claude Managed Agents|Claude Managed Agents]] / [[wiki/entities/products/Claude Platform|Claude Platform]]
 - [[wiki/entities/organizations/LangChain|LangChain]] / [[wiki/entities/products/Deep Agents|Deep Agents]] / [[wiki/entities/products/LangSmith|LangSmith]]
 - [[wiki/entities/organizations/Tsinghua University Shenzhen International Graduate School|Tsinghua University Shenzhen International Graduate School]] / [[wiki/entities/organizations/Harbin Institute of Technology (Shenzhen)|Harbin Institute of Technology (Shenzhen)]]
 - [[wiki/entities/organizations/Turing Post|Turing Post]]
@@ -133,7 +136,7 @@ tags:
 - [[wiki/entities/products/Model Context Protocol|Model Context Protocol]] / [[wiki/entities/products/Zed|Zed]] / [[wiki/entities/products/Cursor|Cursor]] / [[wiki/entities/products/tmux|tmux]] / [[wiki/entities/products/mgrep|mgrep]] / [[wiki/entities/products/hookify|hookify]] / [[wiki/entities/products/Supabase|Supabase]] / [[wiki/entities/products/GitHub Actions|GitHub Actions]]
 - [[wiki/entities/products/Harbor|Harbor]] / [[wiki/entities/products/Daytona|Daytona]]
 - [[wiki/entities/organizations/Thoughtworks|Thoughtworks]] / [[wiki/entities/organizations/Stripe|Stripe]]
-- [[wiki/entities/products/Claude Opus 4.5|Claude Opus 4.5]] / [[wiki/entities/products/Claude Opus 4.6|Claude Opus 4.6]] / [[wiki/entities/products/Claude Sonnet 4.5|Claude Sonnet 4.5]]
+- [[wiki/entities/products/Claude Opus 4.5|Claude Opus 4.5]] / [[wiki/entities/products/Claude Opus 4.6|Claude Opus 4.6]] / [[wiki/entities/products/Claude Opus 4.7|Claude Opus 4.7]] / [[wiki/entities/products/Claude Sonnet 4.5|Claude Sonnet 4.5]] / [[wiki/entities/products/Claude Sonnet 4.6|Claude Sonnet 4.6]]
 - [[wiki/entities/products/Claude Opus 4.8|Claude Opus 4.8]] / [[wiki/entities/products/Bun|Bun]]
 - [[wiki/entities/products/Aardvark|Aardvark]]
 - [[wiki/entities/products/Chrome DevTools MCP|Chrome DevTools MCP]]
@@ -159,4 +162,9 @@ tags:
 - [[wiki/claims/Claude Code shorthand 证据与注意事项|Claude Code shorthand 证据与注意事项]] — @affaan Claude Code 配置实践中的 user harness、MCP/tool budget、hooks、subagents 和并行工作流论断。
 - [[wiki/claims/Codex Goals 证据与注意事项|Codex Goals 证据与注意事项]] — OpenAI Cookbook 中 Goals 的用途、写法、生命周期、继续门控、预算和研究审计论断。
 - [[wiki/claims/Claude Code dynamic workflows 证据与注意事项|Claude Code dynamic workflows 证据与注意事项]] — Claude Code dynamic workflows 的多智能体 JavaScript harness、模式、成本边界和待验证项。
+- [[wiki/claims/Claude Managed Agents memory 与 dreaming 证据与注意事项|Claude Managed Agents memory 与 dreaming 证据与注意事项]] — Claude Managed Agents memory stores、dreaming、权限边界、非破坏性 output store 与待验证项。
 - 待创建：Codex、Claude Agent SDK、LangChain、NLAH/IHR 在 harness 设计上的差异。
+
+## 问题
+
+- [[wiki/questions/Claude Code 有必要使用 memory store 和 dreaming 吗|Claude Code 有必要使用 memory store 和 dreaming 吗]] — 判断 Claude Code 日常使用是否需要引入 Claude Managed Agents 的 memory store / dreaming，以及更合适的分层。

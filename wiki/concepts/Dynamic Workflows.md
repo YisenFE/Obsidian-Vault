@@ -2,13 +2,14 @@
 type: concept
 status: draft
 created: 2026-06-03
-updated: 2026-06-03
+updated: 2026-06-05
 aliases:
   - Claude Code dynamic workflows
   - Task-specific dynamic harnesses
   - Dynamic agent workflows
 sources:
   - "[[wiki/sources/2026-06-03 A harness for every task dynamic workflows in Claude Code]]"
+  - "[[wiki/sources/2026-06-06 Agents that remember]]"
 tags:
   - llm-wiki/concept
   - claude-code
@@ -33,6 +34,7 @@ Dynamic Workflows（动态工作流）是 Claude Code 中由 Claude 为当前任
 - workflow 被中断后，恢复 session 时可继续执行，适合长任务和可恢复执行。
 - 文章强调 dynamic workflows 往往更耗 token，最适合复杂、高价值任务；常规 coding task 不一定需要多评审或额外 compute。
 - workflow 可以保存到 `~/.claude/workflows`，也可以通过 skill 分发，但 skill 中的 workflow 更适合作为模板而非必须逐字执行的脚本。
+- Agents that remember 来源中的 dreaming 也是多智能体 harness，但它不是 Claude Code dynamic workflow：它是 Claude Managed Agents 中异步运行的记忆整理 pipeline，用 orchestrator 和 subagents 维护 memory store。
 
 ## 常见模式
 
@@ -65,6 +67,8 @@ Dynamic Workflows（动态工作流）是 Claude Code 中由 Claude 为当前任
 - [[wiki/concepts/Agent Rules and Memory|Agent Rules and Memory]]
 - [[wiki/concepts/Long-running Agent Failure Modes|Long-running Agent Failure Modes]]
 - [[wiki/concepts/Context Reset vs Compaction|Context Reset vs Compaction]]
+- [[wiki/concepts/Dreaming for Agent Memory|Dreaming for Agent Memory]]
+- [[wiki/concepts/Agent Memory Stores|Agent Memory Stores]]
 
 ## 开放问题
 
@@ -72,3 +76,4 @@ Dynamic Workflows（动态工作流）是 Claude Code 中由 Claude 为当前任
 - workflow 的并行度、模型路由、worktree 使用和 token budget 应如何自动调参？
 - 对抗式 verification 的成本与收益如何度量？
 - workflow 读取 Slack、网页、issue 等不可信内容时，权限隔离应如何表达和执行？
+- 当前任务 workflow 与后台 memory maintenance workflow 是否应使用同一套保存、审计和成本预算机制？

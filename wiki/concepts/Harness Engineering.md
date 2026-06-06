@@ -2,7 +2,7 @@
 type: concept
 status: draft
 created: 2026-05-28
-updated: 2026-06-03
+updated: 2026-06-05
 sources:
   - "[[wiki/sources/2026-05-28 工程技术：在智能体优先的世界中利用 Codex]]"
   - "[[wiki/sources/2026-05-28 Effective harnesses for long-running agents]]"
@@ -13,6 +13,7 @@ sources:
   - "[[wiki/sources/2026-05-28 OpenAI’s Michael Bolin on Codex, Harness Engineering, and the Real Future of Coding Agents]]"
   - "[[wiki/sources/2026-05-28 The Anatomy of an Agent Harness]]"
   - "[[wiki/sources/2026-06-03 A harness for every task dynamic workflows in Claude Code]]"
+  - "[[wiki/sources/2026-06-06 Agents that remember]]"
 tags:
   - llm-wiki/concept
   - harness-engineering
@@ -54,6 +55,9 @@ tags:
 - Claude Code dynamic workflows 来源加入“动态生成 harness”的方向：Claude 可以按任务编写 JavaScript workflow，组合 classify-and-act、fan-out-and-synthesize、adversarial verification、tournament、loop until done 等模式。
 - 该来源强调 harness engineering 需要做资源判断：workflow 更耗 token，适合复杂、高价值、对抗性或大规模并行任务，而不是所有 coding task 的默认流程。
 
+- Agents that remember 来源把 harness engineering 推到长期记忆治理层：memory store 解决跨 session 读写，dreaming harness 解决长期 memory 的去重、过时、冲突和结构化问题。
+- 该来源也强调权限和范围是 harness 设计问题：memory store 可以 read-only/read-write、per user/per workspace/per project，写权限错误可能污染未来 session。
+
 ## 相关概念
 
 - [[wiki/concepts/Agent Loop|Agent Loop]]
@@ -77,6 +81,8 @@ tags:
 - [[wiki/concepts/Computational and Inferential Controls|Computational and Inferential Controls]]
 - [[wiki/concepts/Dynamic Workflows|Dynamic Workflows]]
 - [[wiki/concepts/Long-running Agent Failure Modes|Long-running Agent Failure Modes]]
+- [[wiki/concepts/Agent Memory Stores|Agent Memory Stores]]
+- [[wiki/concepts/Dreaming for Agent Memory|Dreaming for Agent Memory]]
 
 ## 开放问题
 
@@ -89,3 +95,4 @@ tags:
 - 如何评估 harness coverage、harness quality 和 harnessability？
 - 如何避免 trace-driven optimization 过拟合某个 benchmark 或任务集？
 - task-specific dynamic workflow 如何避免为了“更多流程”而制造额外成本和判断噪声？
+- 长期 memory 的范围、权限、审计、清理和 review 应纳入 harness spec 的哪一层？
